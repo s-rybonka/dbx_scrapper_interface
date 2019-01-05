@@ -1,0 +1,53 @@
+{{# if breadcrumbs}}
+  <nav aria-label="breadcrumb" class="top-padding20" style="padding-top: 20px">
+    <ol class="breadcrumb">
+      {{#each breadcrumbs as |breadcrumb|}}
+        <li class="breadcrumb-item">
+          {{#link-to "dropbox-root"(query-params path=breadcrumb.related_path)}}
+            {{breadcrumb.title}} {{check-is-active current.title breadcrumb.title}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+    </ol>
+  </nav>
+{{/if}}
+<div class="row dbx-root-subheader" style="padding-top: 20px">
+  <div class="col-6">
+    {{input type="search" value=search_token
+            key-up=(action 'searchBy') class="form-control mr-sm-2"placeholder="Search"}}
+  </div>
+  <div class="col-6">
+    <select id="sort-select" onchange={{action 'sortBy'}} class="form-control">
+      <option disabled selected> -- Sort by? --</option>
+      <option value="asc">A-Z</option>
+      <option value="desc">Z-A</option>
+    </select>
+  </div>
+</div>
+<div class="row text-center" style="padding-top: 20px">
+  {{#each model as |dbx-item|}}
+    <div class="col-2" style="padding-bottom: 5px;">
+      {{#if-equal param1=dbx-item.type param2='folder'}}
+        <button type="button" class="btn btn-light dbx-item" ondblclick={{action 'openFolder' dbx-item.path_lower}}>
+          <img src="/assets/images/{{dbx-item.type}}_icon.jpeg" width="100" height="100" class="rounded" alt="..."/>
+          <br>
+          <b>{{truncate-title dbx-item.name}}</b>
+        </button>
+        <a download href="{{dbx-item.download_link}}" class="download-button">
+          <span class="badge badge-danger">Download Zip</span>
+        </a>
+      {{/if-equal}}
+      {{#el-equal param1=dbx-item.type param2='folder'}}
+        <button type="button" class="btn btn-light dbx-item">
+          <img src="/assets/images/{{dbx-item.type}}_icon.jpeg" width="100" height="100" class="rounded" alt="..."/>
+          <br>
+          <b>{{truncate-title dbx-item.name}}</b>
+        </button>
+        <a download href="{{dbx-item.download_link}}" class="download-button">
+          <span class="badge badge-danger">Download File</span>
+        </a>
+      {{/el-equal}}
+    </div>
+  {{/each}}
+</div>
+
