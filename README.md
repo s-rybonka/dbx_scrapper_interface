@@ -11,10 +11,11 @@ You will need the following things properly installed on your computer.
 * [Node.js](https://nodejs.org/) (with npm)
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
+* Run Flask Rest client, it should be available at 127.0.0.1:5000
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone <https://github.com/Stanislav-Rybonka/dbx_scrapper_interface.git>` this repository
 * `cd dbx-interface`
 * `npm install`
 

@@ -5,6 +5,7 @@ export default Controller.extend({
   search_token: '',
   queryParams: ['path', 'token', 'ordering'],
   path: '',
+  ordering: '',
   actions: {
     searchBy() {
       let options = {
